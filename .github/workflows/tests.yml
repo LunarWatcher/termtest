@@ -1,0 +1,33 @@
+name: Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: Build
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make -j $(nproc)
+      - name: Run tests
+        working-directory: build
+        run: |
+          ./bin/tests
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: Build
+        run: |
+          mkdir build
+          cd build
+          cmake .. -DTERMTEST_LINT=ON -DTERMTEST_LINT_WARNINGS_ARE_ERRORS=ON
+          make -j $(nproc)
