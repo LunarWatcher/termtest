@@ -51,7 +51,7 @@ FetchContent_Declare(stc
 FetchContent_MakeAvailable(stc)
 
 add_subdirectory(src)
-add_subdirectory(tests)
+add_subdirectory(tests EXCLUDE_FROM_ALL)
 
 add_custom_target(run
     COMMAND termtest
