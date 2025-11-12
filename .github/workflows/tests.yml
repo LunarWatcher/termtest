@@ -20,7 +20,7 @@ jobs:
       - name: Run tests
         working-directory: build
         run: |
-          ./bin/tests
+          make -j $(nproc) test
   lint:
     runs-on: ubuntu-latest
     steps:

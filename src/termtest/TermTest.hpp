@@ -26,11 +26,14 @@ public:
     );
     ~TermTest() {
         stop();
+        block();
     }
 
     void runCommand(const std::string& command);
 
-    auto block() { return proc->block(); }
+    int block() {
+        return proc->block();
+    }
 
     std::string getPTYContent();
 

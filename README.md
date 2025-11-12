@@ -8,6 +8,10 @@ As far as I'm aware, there are no systems that actually let you integration test
 
 Specifically, this library is meant for CLI apps with interactive features (primarily keyboard)
 
+This is primarily a test-oriented wrapper with lots of shell-specific utilities aimed at specifically integration testing when a nested shell is involved. 
+
+Under the hood, [`stc::Unix::Process`](https://github.com/LunarWatcher/stc) is used. If you don't have a full fucking shell involved in the testing loop, you'll probably find it easier to use `stc::Unix::Process` in pipe mode, and have each run of the command be a separate run. Pipe mode still supports stdin, but stdin content is fully separate from the content buffer.
+
 ## Requirements
 
 * C++20
